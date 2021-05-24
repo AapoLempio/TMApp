@@ -1,2 +1,0 @@
-# TMApp
-TaskManager App project
