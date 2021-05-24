@@ -28,6 +28,8 @@ class App extends React.Component {
     window.removeEventListener('load', this.handleLoad)  
   }
 
+//handle 
+
   handleLoad() {
       try{
         Axios.get("http://localhost:8000/cards"
@@ -43,11 +45,16 @@ class App extends React.Component {
       }
       
   }
+
+  //add task card to cardlist in the constructor and call insert to db method
   addTaskCard = () => {
     this.state.cardList.push([this.state.defaultTitle, this.state.defaultText, this.state.cardList.length + 1]);
     this.setState({cardList: this.state.cardList});
     this.insertCardToDB(this.state.cardList.length);
   };
+
+  //sends a request by axios to the index.js (basically a router and at the moment not well named) with card info
+  //to add card into db
   insertCardToDB = (key) =>{
     Axios.post("http://localhost:8000/cards", {
       pk_card: String(key),
@@ -57,11 +64,16 @@ class App extends React.Component {
     });
   };
 
+
+  //Not a finished function. At the moment does not do anythinf
+
   removeCardFromList = () =>{
     this.setState({cardList: []});
     this.handleLoad();
   };
 
+
+  //the render method for the react page with the add button and the cardlist
   render() {
 
     return (
@@ -74,6 +86,7 @@ class App extends React.Component {
           this.state.cardList.map( (card) => {
             
             return (
+
               <TaskCard title= {card[0]} body= {String(card[1])} dBKey= {card[2]} removeCardFromList= {this.removeCardFromList}/>
             )
           })

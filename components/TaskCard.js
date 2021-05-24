@@ -46,6 +46,8 @@ const TaskCardStyles = theme => ({
     backgroundColor: red[500],
   },
 })
+
+// the react class where the taskcard and its functionality is defined
 class TaskCard extends React.Component {
   constructor(props) {
       super(props);
@@ -63,6 +65,8 @@ class TaskCard extends React.Component {
       };
   }
 
+  //handle the expand button click for the expand text button
+
   handleExpandClick = () => {
     this.setState({expanded: !this.state.expanded});
     if (this.state.expanded) {
@@ -74,6 +78,8 @@ class TaskCard extends React.Component {
       this.setState({cardTextColor: "textPrimary"});
     }
   };
+
+  //
 
   saveText = () => {
     this.updateCardTextToDB();
